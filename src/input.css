@@ -1,0 +1,93 @@
+@import "tailwindcss";
+.wrapper{
+    @apply
+    /* bg-blue-950 */
+    bg-gradient-to-br from-blue-950 to-sky-600
+    text-white
+    flex flex-col items-center
+    w-[100vw] h-[100vh];
+}
+.tab-container{
+    @apply
+    /* w-[800px] */
+    gap-x-[450px]
+    flex flex-row justify-around;
+}
+.tab{
+    @apply
+    w-[150px] h-[40px] rounded-lg
+    flex justify-center items-center;
+}
+.tab:hover{
+    text-decoration-line: underline;
+}
+.tab-active{
+    @apply
+    w-[150px] h-[40px] rounded-[4px]
+    flex justify-center items-center
+     bg-gray-400 backdrop-blur-3xl;
+    
+   
+}
+.weather-container{
+    @apply
+    /* border-2 border-amber-50 */
+    /* w-[800px] */
+    flex flex-col items-center;
+}
+.grant-location-container {
+    @apply
+    border-2 border-sky-400
+    flex flex-col items-center justify-center
+    mt-5 mb-5 ml-8 mr-8 gap-5;
+    /* display: none; */
+    display: block;
+
+
+}
+.loading-container{
+    display: none;
+}
+.user-info-weather {
+    @apply
+    mt-[30px] 
+    ;
+    text-align: center;
+    display: none;
+}
+.location-name{
+    @apply
+    text-3xl font-bold
+    mb-[20px]
+    ;
+}
+[data-searchForm]{
+    @apply
+    /* w-[100%] */
+    flex-row justify-center gap-[50px];
+    
+}
+[data-parameter-container]{
+    @apply
+    flex flex-row justify-center gap-[100px];
+    
+}
+[data-weather-desc]{
+    @apply
+    mb-[20px] text-lg ;
+}
+[data-temp]{
+    @apply
+    mb-[50px] text-2xl font-bold
+}
+.parameter{
+    @apply
+    bg-gray-400 w-[170px] h-[170px] backdrop-blur-3xl
+    rounded-[20px] shadow-lg
+    text-lg font-bold
+    mt-3 mb-5 ml-5 mr-5 
+    flex flex-col justify-center items-center gap-3;
+}
+.active{
+    display:block;
+}
