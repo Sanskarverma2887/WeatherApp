@@ -4,13 +4,10 @@ const API_KEY="a228506c908f1fbf13d46f799b68e1f7";
 const yourWeatherTab=document.querySelector("[data-userWeather]");
 const searchWeatherTab=document.querySelector("[data-searchWeather]");
 const searchForm=document.querySelector("[data-searchForm]");
+const grantLocationAccess=document.querySelector(".grant-location-container button");
+
 let currTab=yourWeatherTab;
     
-    // if(!currTab.classList.contains("tab-active")){
-        
-    //     let grantLocation=document.querySelector(".grant-location-container");
-    //     grantLocation.classList.add("active");
-    // }
 
     
     
@@ -24,8 +21,8 @@ yourWeatherTab.addEventListener("click",()=>{
 
         //remove search bar 
         let searchForm=document.querySelector("[data-searchForm]");
-        searchForm.classList.remove("active"); 
-
+        searchForm.classList.remove("active2"); 
+        
         // display weather 
 
         getLocation();
@@ -51,18 +48,30 @@ searchWeatherTab.addEventListener("click",()=>{
         searchWeatherTab.classList.add("tab-active");
         currTab=searchWeatherTab;
         let searchForm=document.querySelector("[data-searchForm]");
-        searchForm.classList.add("active");
-    }
+        searchForm.classList.add("active2");
+
+        
+        let grantLocation=document.querySelector(".grant-location-container");
+        grantLocation.classList.remove("active2");
+
+        const loading=document.querySelector(".loading-container");
+        loading.classList.remove("active2");
+    } 
 });
 
 
 
 async function getWeather(lat,lon){
-  
+    
+
+    const loading=document.querySelector(".loading-container");
+    loading.classList.add("active2");
+
     const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
     let data= await response.json();
     console.log(data);
     updateWeatherUI(data);
+    
 
 }
 
@@ -77,10 +86,10 @@ async function getWeather(lat,lon){
     }
 }
 function handleGrantLocation(){
-  
-    
+  let userInfoWeather=document.querySelector(".user-info-weather");
+    userInfoWeather.classList.remove("active");
     let grantLocation=document.querySelector(".grant-location-container");
-    grantLocation.classList.add("active");
+    grantLocation.classList.add("active2");
 }
 function showPosition(pos){
     let lon=pos.coords.longitude;
@@ -88,12 +97,14 @@ function showPosition(pos){
     // let x=document.querySelector("[data-parameter-container]");
     // x.style.display="flex";
     let grantLocation = document.querySelector(".grant-location-container");
-    grantLocation.classList.remove("active");
+    grantLocation.classList.remove("active2");
    return  getWeather(lat,lon);
     
 }
 function updateWeatherUI(data){
     console.log(data);
+    const loading=document.querySelector(".loading-container");
+    loading.classList.remove("active2");
     let city=document.querySelector("[data-city-name]");
     let climate=document.querySelector("[data-weather-desc]");
     let temp=document.querySelector("[data-temp]");
@@ -107,8 +118,6 @@ function updateWeatherUI(data){
     windspeed.textContent = `${data.wind.speed} m/s`;
     humidity.textContent = `${data.main.humidity}%`;
     clouds.textContent = `${data.clouds.all}%`;
-
-
     
 }
 
@@ -118,6 +127,10 @@ searchForm.addEventListener("submit",searchCity);
 
 async function searchCity(e){
     e.preventDefault();
+
+    const loading=document.querySelector(".loading-container");
+    loading.classList.add("active2");
+
     const city=document.querySelector("#inputValue").value.trim();
     let userInfoWeather=document.querySelector(".user-info-weather");
 

@@ -33,19 +33,32 @@
     @apply
     /* border-2 border-amber-50 */
     /* w-[800px] */
-    flex flex-col items-center;
+    flex flex-col items-center justify-center;
 }
-.grant-location-container {
+.grant-location-container{
     @apply
-    border-2 border-sky-400
-    flex flex-col items-center justify-center
-    mt-5 mb-5 ml-8 mr-8 gap-5;
-    /* display: none; */
-    display: block;
+    
+    flex flex-col justify-center items-center
+    gap-[20px]
+   ;
+    display: none;
+    /* display: block; */
 
 
 }
+.grant-location-container button{
+    @apply
+    w-[150px] h-[40px] rounded-[4px]
+    flex justify-center items-center
+ bg-gray-400 backdrop-blur-3xl;
+ 
+}
+
 .loading-container{
+    @apply
+    flex flex-col justify-around 
+    ;
+
     display: none;
 }
 .user-info-weather {
@@ -63,9 +76,18 @@
 }
 [data-searchForm]{
     @apply
-    /* w-[100%] */
-    flex-row justify-center gap-[50px];
+    flex-row items-center justify-center gap-[10px];
+    display: none;
     
+}
+#inputValue{
+    @apply
+    bg-white/30 border-white/15 shadow-2xl
+    rounded-[10px] placeholder:text-center pl-4 pr-4
+    w-[250px] h-[35px];
+}
+#inputValue:focus{
+    outline: 3px solid rgba(255, 255, 255, 0.7);
 }
 [data-parameter-container]{
     @apply
@@ -78,7 +100,7 @@
 }
 [data-temp]{
     @apply
-    mb-[50px] text-2xl font-bold
+    mb-[50px] text-2xl font-bold;
 }
 .parameter{
     @apply
@@ -90,4 +112,14 @@
 }
 .active{
     display:block;
+}
+.active2{
+    display: flex;
+}
+
+[data-searchForm] button{
+    @apply
+    flex justify-center items-center
+    rounded-full h-[35px] w-[35px]
+    bg-white/15 transition-all;
 }
